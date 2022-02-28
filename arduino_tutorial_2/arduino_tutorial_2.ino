@@ -1,3 +1,5 @@
+// From tutorial 2
+// https://www.youtube.com/watch?v=9uHZB7-T_XA&list=PLGs0VKk2DiYw-L-RibttcvK-WBZm8WLEP&index=2
 const int redLedPin = 5;
 const int greenLedPin = 4;
 const int blueLedPin = 3;
