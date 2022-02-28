@@ -3,7 +3,7 @@
 
 const int pin = 3;
 const int brightOff = 0;
-const int broghtLow = 5;
+const int brightLow = 5;
 const int brightMed = 130;
 const int brightHigh = 255;
 
