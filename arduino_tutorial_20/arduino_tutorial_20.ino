@@ -60,7 +60,7 @@ void loop() {
     digitalWrite(greenPin, HIGH);
     digitalWrite(bluePin, HIGH);
   } else if (colorInput == "orange") {
-    digitalWrite(redPin, LOW);
+    digitalWrite(redPin, HIGH);
     analogWrite(greenPin, 165);
     digitalWrite(bluePin, LOW);
   } else if (colorInput == "off") {
