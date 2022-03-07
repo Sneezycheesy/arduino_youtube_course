@@ -2,7 +2,7 @@
  * Tutorial 29 using push buttons to create a dimmable led
  * https://youtu.be/XWL6Ydsmi0s
  */
-const int dt = 500; // delaytime
+const int dt = 100; // delaytime
 const int boadRate = 9600;
 
 const int btnIncreasePin = 8;
@@ -44,7 +44,7 @@ void loop() {
     ledState = 0;
     buzz();
   }
-  
+   
   analogWrite(ledPin, ledState);
   Serial.print("Decreasing pin: ");
   Serial.print(btnDecreaseCurrentState);
@@ -53,6 +53,14 @@ void loop() {
 }
 
 void buzz() {
+  digitalWrite(buzzPin, HIGH);
+  delay(dt);
+  digitalWrite(buzzPin, LOW);
+  delay(dt);
+  digitalWrite(buzzPin, HIGH);
+  delay(dt);
+  digitalWrite(buzzPin, LOW);
+  delay(dt);
   digitalWrite(buzzPin, HIGH);
   delay(dt);
   digitalWrite(buzzPin, LOW);
