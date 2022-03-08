@@ -9,6 +9,7 @@ const int tiltPin = 12;
 const int redLedPin = 2;
 const int greenLedPin = 3;
 const int buzzPin = 13;
+const int defaultWarning = 3;
 int tiltValue;
 
 void setup() {
@@ -27,7 +28,7 @@ void loop() {
     digitalWrite(redLedPin, HIGH);
     digitalWrite(greenLedPin, LOW);
 
-    buzzWarning(3);
+    buzzWarning(defaultWarning);
   } else {
     digitalWrite(redLedPin, LOW);
     digitalWrite(greenLedPin, HIGH);
