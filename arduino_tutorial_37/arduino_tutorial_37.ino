@@ -1,15 +1,19 @@
 /*
  * Tutorial 37 Understanding how to control dc motors
  * https://youtu.be/fPLEncYrl4Q
+ * 
+ * Tutorial 38 Using a tilt switch cot off with a DC motor
+ * https://youtu.be/tXs3Bzf7s9g
+ * Written without the tutorial
  */
 
 const int baudRate = 9600;
-const int dt = 100; // delaytime
+const int dt = 50; // delaytime
 const int speedPin = 11;
 const int dirPin1 = 7;
 const int dirPin2 = 6;
 const int tiltPin = 2;
-int motorSpeed = 200;
+int motorSpeed = 80;
 bool running = false;
 bool tiltVal;
 
