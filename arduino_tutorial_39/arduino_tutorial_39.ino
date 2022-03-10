@@ -49,7 +49,4 @@ void loop() {
   } else {
     analogWrite(speedPin, joystickYWriteValue);
   }
-
-  Serial.println(joystickYWriteValue);
-  delay(dt);
 }
