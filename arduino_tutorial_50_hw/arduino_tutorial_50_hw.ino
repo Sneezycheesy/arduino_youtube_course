@@ -4,7 +4,6 @@
  */
 #include <DHT.h>
 #include <LiquidCrystal.h>
-#include <Wire.h>
 
 #define Type DHT11
 
