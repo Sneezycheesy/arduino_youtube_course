@@ -7,7 +7,9 @@ const int dt = 10; // delaytime
 
 const byte echoPin = 11;
 const byte triggerPin = 12;
-int pingTravelTime;
+float pingTravelTime;
+float distance;
+float distancecm;
 
 void setup() {
   // put your setup code here, to run once:
@@ -24,9 +26,13 @@ void loop() {
   delayMicroseconds(dt);
   digitalWrite(triggerPin, LOW);
 
-  pingTravelTime = pulseIn(echoPin, HIGH);
+  pingTravelTime = pulseIn(echoPin, HIGH); // microSeconds
+  distance = ((767. * 12 * 5280 / 3600 / 1000000) * pingTravelTime) / 2; // convert miles/hour to inches
+  distancecm = ((343. * 100 / 1000000) * pingTravelTime) / 2; // convert meters/second to cm
   Serial.print("ping: ");
-  Serial.print(pingTravelTime);
-  Serial.println("microseconds");
+  Serial.print(distance);
+  Serial.print(" inches | ");
+  Serial.print(distancecm);
+  Serial.println(" cm"); 
   delay(250);
 }
