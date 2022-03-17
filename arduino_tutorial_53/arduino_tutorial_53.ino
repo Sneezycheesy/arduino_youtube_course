@@ -7,6 +7,7 @@ const int dt = 10; // delaytime
 
 const byte echoPin = 11;
 const byte triggerPin = 12;
+const byte ledPin = 8;
 float pingTravelTime;
 float distance;
 float distancecm;
@@ -16,6 +17,7 @@ void setup() {
   Serial.begin(baudRate);
   pinMode(triggerPin, OUTPUT);
   pinMode(echoPin, INPUT);
+  pinMode(ledPin,OUTPUT);
 }
 
 void loop() {
@@ -33,6 +35,13 @@ void loop() {
   Serial.print(distance);
   Serial.print(" inches | ");
   Serial.print(distancecm);
-  Serial.println(" cm"); 
+  Serial.println(" cm");
+
+  if (distancecm <= 5.00) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+  
   delay(250);
 }
