@@ -29,8 +29,8 @@ void loop() {
   digitalWrite(triggerPin, LOW);
 
   pingTravelTime = pulseIn(echoPin, HIGH); // microSeconds
-  distance = ((767. * 12 * 5280 / 3600 / 1000000) * pingTravelTime) / 2; // convert miles/hour to inches
-  distancecm = ((343. * 100 / 1000000) * pingTravelTime) / 2; // convert meters/second to cm
+  distance = convertPingTravelTimeToInches(pingTravelTime); // convert miles/hour to inches
+  distancecm = convertPingTravelTimeToCentimeters(pingTravelTime); // convert meters/second to cm
   Serial.print("ping: ");
   Serial.print(distance);
   Serial.print(" inches | ");
@@ -44,4 +44,18 @@ void loop() {
   }
   
   delay(250);
+}
+
+float convertPingTravelTimeToCentimeters(float traveltime) {
+  float speedOfSoundMetersPerSecond = 343.;
+  float speedOfSoundCentimetersPerMicrosecond = speedOfSoundMetersPerSecond * 100 / 1000000;
+  float traveltimeOneWay = traveltime / 2;
+  return speedOfSoundCentimetersPerMicrosecond * traveltimeOneWay;
+}
+
+float convertPingTravelTimeToInches(float traveltime) {
+  float traveltimeOneWay = traveltime / 2;
+  float speedOfSoundMilesPerHour = 767.;
+  float speedOfSoundInchesPerMicrosecond = speedOfSoundMilesPerHour * 12 * 5280 / 3600 / 1000000;
+  return speedOfSoundInchesPerMicrosecond * traveltimeOneWay;
 }
