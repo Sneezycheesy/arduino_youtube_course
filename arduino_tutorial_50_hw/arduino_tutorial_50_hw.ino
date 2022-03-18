@@ -17,12 +17,12 @@ bool btnPrevValue;
 // LCD
 const int columns = 16;
 const int rows = 2;
-const int rs = 7;
-const int en = 8;
-const int d4 = 9;
-const int d5 = 10;
-const int d6 = 11;
-const int d7 = 12;
+const int rs = 8;
+const int en = 7;
+const int d4 = 12;
+const int d5 = 11;
+const int d6 = 10;
+const int d7 = 9;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 // Temp sensor
 const int sensePin = 2;
