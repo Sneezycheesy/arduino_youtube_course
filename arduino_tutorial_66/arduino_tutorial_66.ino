@@ -13,7 +13,7 @@ bool motorDirection = 1; // 1 = forward, 0 = backward
 bool running = 0; // when 0, motor is off
 String motorCommand;
 
-struct key_value {
+const struct key_value {
   char* key;
   uint32_t value;
 } commands[] = {
@@ -52,24 +52,25 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if (IrReceiver.decode()) {
-    irCommand = IrReceiver.decodedIRData.decodedRawData;
-    if (irCommand == 0) {
-      irCommand = prevIrCommand;
-    }
-    for (int j = 0; j < sizeof(commands); j++) {
-      if (commands[j].value == irCommand) {
-        motorCommand = commands[j].key;
-      }
-    }
-
-    handleCommand();
-    prevIrCommand = irCommand; 
-    Serial.println(motorCommand);
-    Serial.println(motorSpeed);
-    delay(dt);
-    IrReceiver.resume();
+  while (!IrReceiver.decode()) {
+    
   }
+  irCommand = IrReceiver.decodedIRData.decodedRawData;
+  if (irCommand == 0) {
+    irCommand = prevIrCommand;
+  }
+  for (int j = 0; j < sizeof(commands); j++) {
+    if (commands[j].value == irCommand) {
+      motorCommand = commands[j].key;
+    }
+  }
+
+  handleCommand();
+  prevIrCommand = irCommand; 
+  Serial.println(motorCommand);
+  Serial.println(motorSpeed);
+  delay(dt);
+  IrReceiver.resume();
 }
 
 void handleCommand() {
@@ -93,7 +94,7 @@ void startStopMotor() {
   setDirectionMotor();
   if (running) {
     analogWrite(enPin, 255);
-    delayMicroseconds(2);
+    delayMicroseconds(120);
     analogWrite(enPin, motorSpeed);
   } else {
     digitalWrite(enPin, LOW);
@@ -102,12 +103,12 @@ void startStopMotor() {
 
 void setDirectionMotor() {
   digitalWrite(enPin, LOW);
-  delayMicroseconds(2);
+  delay(50);
   digitalWrite(pwrPin1, !motorDirection);
   digitalWrite(pwrPin2, motorDirection);
   if (running) {
     analogWrite(enPin, 255);
-    delayMicroseconds(2);
+    delay(50);
     analogWrite(enPin, motorSpeed); 
   }
 }
